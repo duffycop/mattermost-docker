@@ -4,6 +4,8 @@ FROM nginx:mainline-alpine
 RUN rm /etc/nginx/conf.d/default.conf \
     && apk add --no-cache curl
 
+RUN apk update && apk fix -u freetype
+
 COPY ["./mattermost", "./mattermost-ssl", "/etc/nginx/sites-available/"]
 COPY ./security.conf /etc/nginx/conf.d/
 
